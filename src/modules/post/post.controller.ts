@@ -21,7 +21,8 @@ const getAllPosts = async (req: Request, res: Response) => {
     res.send({
       success: true,
       message: "All posts retrived successfully",
-      data: result,
+      total: result.total,
+      data: result.data,
     });
   } catch (err) {
     res.send(err);
