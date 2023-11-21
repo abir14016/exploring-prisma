@@ -89,14 +89,21 @@ const deletePost = async (id: number): Promise<Post> => {
 };
 
 const aggregateAndGrouping = async () => {
-  const result = await prisma.post.aggregate({
-    _avg: {
-      authorId: true,
-      categoryId: true,
-    },
-    _sum: {
-      authorId: true,
-      categoryId: true,
+  //   const result = await prisma.post.aggregate({
+  //     _avg: {
+  //       authorId: true,
+  //       categoryId: true,
+  //     },
+  //     _sum: {
+  //       authorId: true,
+  //       categoryId: true,
+  //     },
+  //   });
+
+  const result = await prisma.post.groupBy({
+    by: ["title"],
+    _count: {
+      title: true,
     },
   });
 
