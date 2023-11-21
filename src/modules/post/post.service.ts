@@ -88,6 +88,21 @@ const deletePost = async (id: number): Promise<Post> => {
   return result;
 };
 
+const aggregateAndGrouping = async () => {
+  const result = await prisma.post.aggregate({
+    _avg: {
+      authorId: true,
+      categoryId: true,
+    },
+    _sum: {
+      authorId: true,
+      categoryId: true,
+    },
+  });
+
+  return result;
+};
+
 const getSinglePost = async (id: number) => {
   const result = prisma.post.findUnique({
     where: {
@@ -108,4 +123,5 @@ export const PostService = {
   getSinglePost,
   updatePost,
   deletePost,
+  aggregateAndGrouping,
 };
