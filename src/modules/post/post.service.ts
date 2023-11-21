@@ -78,6 +78,16 @@ const updatePost = async (
   return result;
 };
 
+const deletePost = async (id: number): Promise<Post> => {
+  const result = await prisma.post.delete({
+    where: {
+      id,
+    },
+  });
+
+  return result;
+};
+
 const getSinglePost = async (id: number) => {
   const result = prisma.post.findUnique({
     where: {
@@ -97,4 +107,5 @@ export const PostService = {
   getAllPosts,
   getSinglePost,
   updatePost,
+  deletePost,
 };

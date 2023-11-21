@@ -44,6 +44,20 @@ const updatePost = async (req: Request, res: Response) => {
   }
 };
 
+const deletePost = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  try {
+    const result = await PostService.deletePost(id);
+    res.send({
+      success: true,
+      message: "post deleted successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 const getSinglePost = async (req: Request, res: Response) => {
   try {
     const result = await PostService.getSinglePost(parseInt(req.params.id));
@@ -62,4 +76,5 @@ export const PostController = {
   getAllPosts,
   getSinglePost,
   updatePost,
+  deletePost,
 };
